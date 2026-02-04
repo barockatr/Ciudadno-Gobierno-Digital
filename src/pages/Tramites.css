@@ -90,4 +90,66 @@
 
 .back-link:hover {
     color: #111827;
+}/* CSS for the Search Bar */
+
+.tramites-search {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.search-input-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.875rem 1rem 0.875rem 3rem;
+    border: 1px solid #d1d5db;
+    border-radius: 99px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.2s;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.search-input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.no-results {
+    text-align: center;
+    padding: 4rem 1rem;
+    color: #6b7280;
+}
+
+.no-results strong {
+    color: #111827;
+}
+
+.btn-clean {
+    display: block;
+    margin: 1rem auto;
+    border: none;
+    background: none;
+    color: #2563eb;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.btn-clean:hover {
+    text-decoration: none;
+    color: #1d4ed8;
 }
