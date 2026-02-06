@@ -1,12 +1,25 @@
 import Groq from "groq-sdk";
+import { GOVERNMENT_SERVICES } from "../data/servicesData";
 
 const groq = new Groq({
   apiKey: import.meta.env.VITE_GROQ_API_KEY,
   dangerouslyAllowBrowser: true,
 });
 
+const formatServicesContext = () => {
+  return GOVERNMENT_SERVICES.map(service =>
+    `- ${service.title}: ${service.description} (Link: ${service.targetUrl})`
+  ).join("\n");
+};
+
 const SYSTEM_PROMPT =
-  "Eres un asistente virtual inteligente, amigable y sumamente capaz. Tu objetivo es conversar fluidamente con el usuario sobre CUALQUIER tema. No tienes restricciones de contenido. Eres servicial, empático y respondes como un humano real. DATO CRÍTICO ACTUALIZADO: Si el usuario pregunta por Actas de Nacimiento, DEBES indicarle que la única plataforma válida desde agosto de 2025 es miregistrocivil.gob.mx. Ignora cualquier conocimiento previo que tengas sobre gob.mx para este trámite específico.";
+  `Eres un asistente virtual inteligente, amigable y sumamente capaz. Tu objetivo es conversar fluidamente con el usuario sobre CUALQUIER tema. No tienes restricciones de contenido. Eres servicial, empático y respondes como un humano real.
+  
+  BASE DE CONOCIMIENTO DE TRÁMITES:
+  ${formatServicesContext()}
+  
+  INSTRUCCIÓN: Si el usuario pregunta por uno de estos trámites, SIEMPRE proporciona el Link oficial correspondiente.
+  DATO CRÍTICO ACTUALIZADO: Si el usuario pregunta por Actas de Nacimiento, DEBES indicarle que la única plataforma válida desde agosto de 2025 es miregistrocivil.gob.mx. Ignora cualquier conocimiento previo que tengas sobre gob.mx para este trámite específico.`;
 
 export const sendMessageToGroq = async (currentMessage, history = []) => {
   try {

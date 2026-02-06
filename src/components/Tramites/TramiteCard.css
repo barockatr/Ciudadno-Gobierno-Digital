@@ -1,0 +1,86 @@
+.tramite-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    overflow: hidden;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #f1f5f9;
+    height: 100%;
+    padding: 1.5rem;
+    position: relative;
+}
+
+.tramite-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-color: #cbd5e1;
+}
+
+/* 1. Pill Style */
+.card-top-bar {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 0.75rem;
+}
+
+.institution-pill {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.6rem;
+    border-radius: 9999px;
+    display: inline-block;
+}
+
+/* 2. Title Style */
+.tramite-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0f172a;
+    /* Slate 900 */
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+/* 3. Description Style */
+.tramite-description {
+    font-size: 0.9rem;
+    color: #64748b;
+    /* Slate 500 */
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+    line-height: 1.5;
+
+    /* Clamp to 2 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 4. Footer Style */
+.tramite-footer {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 1rem;
+    margin-top: auto;
+    color: #64748b;
+}
+
+.time-est {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.clock-icon {
+    color: #94a3b8;
+}

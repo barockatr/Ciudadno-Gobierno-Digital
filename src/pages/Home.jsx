@@ -1,8 +1,9 @@
 // Placeholder import removed
 
 
+import HeroSlider from '../components/HeroSlider';
+
 const UNSPLASH_IDS = {
-    hero: "1497366216548-37526070297c",
     card1: "1554224155-8d04cb21cd6c",
     card2: "1517048676732-d65bc937f952",
     card3: "1517245386807-bb43f82c33c4"
@@ -13,16 +14,7 @@ const getImg = (id) => `https://images.unsplash.com/photo-${id}?auto=format&fit=
 export default function Home({ navigateToTramites }) {
     return (
         <div className="page-home">
-            <section className="hero">
-                <div className="container">
-                    <h1>Bienvenido al Portal Ciudadano</h1>
-                    <p>Tu acceso directo a los servicios del gobierno. Rápido, seguro y eficiente.</p>
-                    <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-                        <button className="btn btn-primary" onClick={navigateToTramites}>Iniciar Trámite</button>
-                        <button className="btn" style={{ background: 'white', border: '1px solid #e2e8f0' }}>Más Información</button>
-                    </div>
-                </div>
-            </section>
+            <HeroSlider />
 
             <section className="container" style={{ paddingBottom: '4rem' }}>
                 <h2 style={{ marginBottom: '2rem', color: 'var(--color-primary)' }}>Servicios Destacados</h2>
