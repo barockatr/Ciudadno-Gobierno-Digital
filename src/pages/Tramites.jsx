@@ -3,7 +3,9 @@ import { useState, useMemo } from 'react';
 import { TRAMITES, CATEGORIAS } from '../data/tramites';
 import TramiteCard from '../components/Tramites/TramiteCard';
 import PreFlightModal from '../components/Tramites/PreFlightModal';
-import { Search, ArrowLeft, Grid, Building2 } from 'lucide-react';
+
+import { Search, ArrowLeft, Building2, SearchX, MessageSquare } from 'lucide-react';
+
 import './Tramites.css';
 
 export default function Tramites() {
@@ -31,7 +33,7 @@ export default function Tramites() {
     // Filtering Logic
     const filteredTramites = useMemo(() => {
         const normalizeText = (text) =>
-            text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            text ? text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
 
         const term = normalizeText(searchTerm);
 
@@ -42,24 +44,36 @@ export default function Tramites() {
             filtered = filtered.filter(t => t.categoria === selectedCategory);
         }
 
-        // Level 2 Filter: Search Term (if user types while in a category or global)
+        // Level 2 Filter: Search Term (title, description, or keywords)
         if (term) {
             filtered = filtered.filter(t =>
                 normalizeText(t.titulo).includes(term) ||
                 normalizeText(t.descripcion).includes(term) ||
-                normalizeText(t.institucion).includes(term)
+                normalizeText(t.institucion).includes(term) ||
+                (t.keywords && t.keywords.some(k => normalizeText(k).includes(term)))
             );
         }
 
         return filtered;
     }, [searchTerm, selectedCategory]);
 
+    const handleAskAI = () => {
+        // Dispatch custom event to open Chatbot
+        const event = new CustomEvent('open-chatbot', {
+            detail: {
+                message: `Hola, no encontré lo que buscaba sobre "${searchTerm}". ¿Podrías ayudarme?`,
+                autoSubmit: true
+            }
+        });
+        window.dispatchEvent(event);
+    };
+
     const currentCategoryInfo = CATEGORIAS.find(c => c.id === selectedCategory);
 
     return (
         <div className="tramites-page-container">
+            {/* ... (Header and Search remain mostly same, ensure imports are correct) */}
 
-            {/* Header & Search */}
             <div className="tramites-header">
                 {!selectedCategory ? (
                     <>
@@ -79,13 +93,12 @@ export default function Tramites() {
                     </div>
                 )}
 
-                {/* Always allow search, but maybe style it differently or keep it simpler */}
                 <div className="tramites-search fade-in">
                     <div className="search-input-wrapper">
                         <Search className="search-icon" size={20} />
                         <input
                             type="text"
-                            placeholder={selectedCategory ? `Buscar en ${selectedCategory}...` : "Buscar trámite global..."}
+                            placeholder={selectedCategory ? `Buscar en ${selectedCategory}...` : "Buscar trámite global... (ej. 'bebé', 'viaje')"}
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             className="search-input"
@@ -94,7 +107,7 @@ export default function Tramites() {
                 </div>
             </div>
 
-            {/* VISTA 1: DASHBOARD (Categories) - Only show if NO category selected AND NO search term */}
+            {/* VISTA 1: DASHBOARD (Categories) */}
             {!selectedCategory && !searchTerm && (
                 <div className="categories-grid fade-in">
                     {CATEGORIAS.map((cat) => (
@@ -114,7 +127,7 @@ export default function Tramites() {
                 </div>
             )}
 
-            {/* VISTA 2: LISTADO (Grid of Tramites) - Show if Category selected OR Search Active */}
+            {/* VISTA 2: LISTADO (Grid of Tramites) */}
             {(selectedCategory || searchTerm) && (
                 <div className="tramites-grid fade-in-up">
                     {filteredTramites.length > 0 ? (
@@ -126,13 +139,25 @@ export default function Tramites() {
                             />
                         ))
                     ) : (
-                        <div className="no-results">
-                            <p>No encontramos trámites.</p>
-                            {selectedCategory && (
-                                <button className="btn-clean" onClick={handleBackToDashboard}>
-                                    Ver otras instituciones
+                        <div className="no-results-container fade-in">
+                            <div className="no-results-icon">
+                                <SearchX size={48} />
+                            </div>
+                            <h3>No encontramos "{searchTerm}"</h3>
+                            <p>Intenta con otras palabras clave o categorías.</p>
+
+                            <div className="no-results-actions">
+                                {selectedCategory && (
+                                    <button className="btn-clean" onClick={handleBackToDashboard}>
+                                        Ver todas las instituciones
+                                    </button>
+                                )}
+
+                                <button className="btn-ai-help" onClick={handleAskAI}>
+                                    <MessageSquare size={18} />
+                                    Preguntar al Asistente IA
                                 </button>
-                            )}
+                            </div>
                         </div>
                     )}
                 </div>

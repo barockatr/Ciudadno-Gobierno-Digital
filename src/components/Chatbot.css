@@ -13,6 +13,8 @@
     box-shadow: var(--shadow-lg);
     transition: transform 0.2s;
     z-index: 50;
+    border: none;
+    cursor: pointer;
 }
 
 .chatbot-toggle:hover {
@@ -79,6 +81,9 @@
     color: white;
     padding: 4px;
     border-radius: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 .close-btn:hover {
@@ -154,6 +159,11 @@
     background: var(--color-primary);
     color: white;
     border-radius: var(--radius-sm);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .chatbot-input button:disabled {
@@ -181,4 +191,41 @@
     to {
         transform: rotate(360deg);
     }
+}
+
+/* Suggestions Chips */
+.chatbot-suggestions {
+    display: flex;
+    overflow-x: auto;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #f8fafc;
+    border-top: 1px solid #f1f5f9;
+    /* Hide scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.chatbot-suggestions::-webkit-scrollbar {
+    display: none;
+}
+
+.suggestion-chip {
+    flex-shrink: 0;
+    padding: 0.4rem 0.8rem;
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.suggestion-chip:hover {
+    background: #eff6ff;
+    /* blue-50 */
+    color: #2563eb;
+    border-color: #93c5fd;
 }

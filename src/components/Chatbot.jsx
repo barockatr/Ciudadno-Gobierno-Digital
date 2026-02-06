@@ -10,6 +10,7 @@ export default function Chatbot() {
     ]);
     const [inputValue, setInputValue] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const inputRef = useRef(null);
     const messagesEndRef = useRef(null);
 
     const scrollToBottom = () => {
@@ -20,22 +21,51 @@ export default function Chatbot() {
         scrollToBottom();
     }, [messages]);
 
-    const handleSend = async () => {
-        if (!inputValue.trim()) return;
+    useEffect(() => {
+        if (isOpen) {
+            setTimeout(() => inputRef.current?.focus(), 100);
+        }
+    }, [isOpen]);
 
-        const userMessage = inputValue;
-        setInputValue('');
-        setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
+    useEffect(() => {
+        const handleOpenChatbot = (e) => {
+            setIsOpen(true);
+            if (e.detail?.message) {
+                if (e.detail.autoSubmit) {
+                    handleSend(e.detail.message);
+                } else {
+                    setInputValue(e.detail.message);
+                }
+            }
+        };
+
+        window.addEventListener('open-chatbot', handleOpenChatbot);
+        return () => window.removeEventListener('open-chatbot', handleOpenChatbot);
+    }, []);
+
+    const handleSend = async (text = null) => {
+        const messageToSend = typeof text === 'string' ? text : inputValue;
+
+        if (!messageToSend.trim()) return;
+
+        setInputValue(''); // Clear input
+        setMessages(prev => [...prev, { role: 'user', content: messageToSend }]);
         setIsLoading(true);
 
         const botResponse = await sendMessageToGroq(
-            userMessage,
+            messageToSend,
             messages.map(m => ({ role: m.role, content: m.content }))
         );
 
         setMessages(prev => [...prev, { role: 'assistant', content: botResponse }]);
         setIsLoading(false);
     };
+
+    const suggestions = [
+        "¿Cómo saco mi CURP?",
+        "Requisitos para pasaporte",
+        "Cita médica IMSS"
+    ];
 
     return (
         <>
@@ -74,8 +104,17 @@ export default function Chatbot() {
                         <div ref={messagesEndRef} />
                     </div>
 
+                    <div className="chatbot-suggestions">
+                        {suggestions.map((s, i) => (
+                            <button key={i} className="suggestion-chip" onClick={() => handleSend(s)}>
+                                {s}
+                            </button>
+                        ))}
+                    </div>
+
                     <div className="chatbot-input">
                         <input
+                            ref={inputRef}
                             type="text"
                             placeholder="Escribe tu mensaje..."
                             value={inputValue}
@@ -83,7 +122,7 @@ export default function Chatbot() {
                             onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                             disabled={isLoading}
                         />
-                        <button onClick={handleSend} disabled={isLoading || !inputValue.trim()}>
+                        <button onClick={() => handleSend()} disabled={isLoading || !inputValue.trim()}>
                             <Send size={18} />
                         </button>
                     </div>

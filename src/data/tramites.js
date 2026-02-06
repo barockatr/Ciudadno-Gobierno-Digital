@@ -11,7 +11,8 @@ export const TRAMITES = [
         descripcion: "Agenda tu consulta de medicina familiar o dental.",
         tiempoEstimado: "5 min",
         requisitos: ["CURP", "NSS", "Correo electrónico"],
-        color: "var(--color-imss, #107c10)"
+        color: "var(--color-imss, #107c10)",
+        keywords: ["doctor", "enfermo", "medicina", "seguro social", "clínica", "consultorio", "dientes", "dental"]
     },
     {
         id: "imss-alta",
@@ -23,7 +24,8 @@ export const TRAMITES = [
         descripcion: "Date de alta en tu clínica o UMF más cercana.",
         tiempoEstimado: "5 min",
         requisitos: ["CURP", "Código Postal", "NSS"],
-        color: "var(--color-imss, #107c10)"
+        color: "var(--color-imss, #107c10)",
+        keywords: ["registro", "primera vez", "umf", "adscripción", "cambio de clinica"]
     },
     {
         id: "imss-semanas",
@@ -35,7 +37,8 @@ export const TRAMITES = [
         descripcion: "Consulta tu historial de cotización ante el IMSS.",
         tiempoEstimado: "3 min",
         requisitos: ["CURP", "NSS", "Correo electrónico"],
-        color: "var(--color-imss, #107c10)"
+        color: "var(--color-imss, #107c10)",
+        keywords: ["pension", "jubilación", "trabajo", "historial laboral", "patrones", "años trabajados"]
     },
     {
         id: "imss-vigencia",
@@ -47,7 +50,8 @@ export const TRAMITES = [
         descripcion: "Verifica si estás dado de alta y vigente para recibir servicio.",
         tiempoEstimado: "2 min",
         requisitos: ["CURP", "NSS", "Correo electrónico"],
-        color: "var(--color-imss, #107c10)"
+        color: "var(--color-imss, #107c10)",
+        keywords: ["servicio medico", "activo", "baja", "constancia"]
     },
 
     // SRE
@@ -61,7 +65,8 @@ export const TRAMITES = [
         descripcion: "Agenda tu cita para obtener tu pasaporte por primera vez.",
         tiempoEstimado: "15 min",
         requisitos: ["Cuenta SRE", "CURP Certificada", "Acta de Nacimiento"],
-        color: "var(--color-sre, #13322b)"
+        color: "var(--color-sre, #13322b)",
+        keywords: ["viaje", "extranjero", "visa", "sre", "vuelo", "identificación internacional", "salir del pais"]
     },
     {
         id: "sre-pasaporte-renovacion",
@@ -73,7 +78,8 @@ export const TRAMITES = [
         descripcion: "Programa la renovación de tu documento de viaje.",
         tiempoEstimado: "10 min",
         requisitos: ["Pasaporte anterior", "Cuenta puls SRE"],
-        color: "var(--color-sre, #13322b)"
+        color: "var(--color-sre, #13322b)",
+        keywords: ["vencido", "caducado", "nuevo pasaporte", "canje"]
     },
 
     // SAT
@@ -87,7 +93,8 @@ export const TRAMITES = [
         descripcion: "Genera tu documento fiscal actualizado.",
         tiempoEstimado: "5 min",
         requisitos: ["RFC", "Contraseña o e.firma"],
-        color: "var(--color-sat, #9d2449)"
+        color: "var(--color-sat, #9d2449)",
+        keywords: ["csf", "datos fiscales", "factura", "rfc", "domicilio fiscal", "empleo"]
     },
     {
         id: "sat-rfc",
@@ -99,7 +106,8 @@ export const TRAMITES = [
         descripcion: "Inscríbete en el RFC con tu CURP.",
         tiempoEstimado: "8 min",
         requisitos: ["CURP", "Domicilio", "Correo"],
-        color: "var(--color-sat, #9d2449)"
+        color: "var(--color-sat, #9d2449)",
+        keywords: ["alta sat", "primera vez", "impuestos", "contribuyente", "trabajo"]
     },
 
     // SEGOB / RENAPO
@@ -113,7 +121,8 @@ export const TRAMITES = [
         descripcion: "Consulta y descarga tu clave única.",
         tiempoEstimado: "2 min",
         requisitos: ["Datos personales"],
-        color: "var(--color-gob, #b38e5d)"
+        color: "var(--color-gob, #b38e5d)",
+        keywords: ["clave", "identificación", "renapo", "rfc", "letra", "documento oficial"]
     },
     {
         id: "acta-nacimiento",
@@ -125,7 +134,8 @@ export const TRAMITES = [
         descripcion: "Descarga tu copia certificada.",
         tiempoEstimado: "5 min",
         requisitos: ["CURP", "Pago en línea"],
-        color: "var(--color-gob, #b38e5d)"
+        color: "var(--color-gob, #b38e5d)",
+        keywords: ["bebe", "papel para nacer", "hijo", "registro civil", "copia certificada", "nacionalidad"]
     }
 ];
 
