@@ -154,6 +154,19 @@
     gap: 1rem;
 }
 
+@media (max-width: 640px) {
+    .modal-actions {
+        flex-direction: column-reverse;
+        /* Cancel at bottom */
+    }
+
+    .btn-cancel,
+    .btn-confirm {
+        width: 100%;
+        flex: none;
+    }
+}
+
 .btn-cancel {
     flex: 1;
     background: white;
@@ -190,7 +203,9 @@
 .btn-confirm:hover {
     background-color: #1d4ed8;
     transform: translateY(-1px);
-}/* Existing styles... */
+}
+
+/* Existing styles... */
 
 .special-req-alert {
     background-color: #fff7ed;

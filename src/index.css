@@ -1,16 +1,21 @@
 :root {
-  --color-primary: #0f172a; /* Slate 900 */
-  --color-secondary: #334155; /* Slate 700 */
-  --color-accent: #3b82f6; /* Blue 500 */
-  --color-background: #f8fafc; /* Slate 50 */
-  --color-text: #1e293b; /* Slate 800 */
+  --color-primary: #0f172a;
+  /* Slate 900 */
+  --color-secondary: #334155;
+  /* Slate 700 */
+  --color-accent: #3b82f6;
+  /* Blue 500 */
+  --color-background: #f8fafc;
+  /* Slate 50 */
+  --color-text: #1e293b;
+  /* Slate 800 */
   --color-white: #ffffff;
   --color-light-gray: #e2e8f0;
-  
+
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  
+
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
@@ -85,20 +90,20 @@ button {
 
 .grid-3 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
 }
 
 .hero {
   text-align: center;
   padding: 4rem 1rem;
-  background: rgb(241,245,249);
-  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(241,245,249,1) 100%);
+  background: rgb(241, 245, 249);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(241, 245, 249, 1) 100%);
   margin-bottom: 2rem;
 }
 
 .hero h1 {
-  font-size: 3rem;
+  font-size: 2.25rem;
   font-weight: 800;
   color: var(--color-primary);
   margin-bottom: 1rem;
@@ -106,8 +111,19 @@ button {
 }
 
 .hero p {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   color: var(--color-secondary);
   max-width: 600px;
   margin: 0 auto 2rem;
+}
+
+/* Base Media Queries */
+@media (min-width: 640px) {
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .hero p {
+    font-size: 1.25rem;
+  }
 }

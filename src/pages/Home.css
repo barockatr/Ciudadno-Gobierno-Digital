@@ -1,0 +1,86 @@
+.page-home {
+    padding-bottom: 2rem;
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 2rem auto 0;
+    position: relative;
+    padding: 0 1rem;
+}
+
+.search-icon-home {
+    position: absolute;
+    left: 2.25rem;
+    /* 1rem padding of container + 1.25rem left */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+}
+
+.search-input-home {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3.5rem;
+    border-radius: 99px;
+    border: 1px solid #cbd5e1;
+    outline: none;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    font-size: 1.1rem;
+    transition: all 0.2s;
+}
+
+.search-input-home:focus {
+    border-color: #3b82f6;
+}
+
+.section-title {
+    margin-bottom: 1.5rem;
+    color: #334155;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding-left: 0.5rem;
+    border-left: 4px solid var(--color-accent);
+}
+
+.card-img-home {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-content h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    color: var(--color-primary);
+}
+
+.card-content p {
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+}
+
+.card-action {
+    color: var(--color-accent);
+    font-weight: 600;
+    padding: 0;
+    display: inline-block;
+}
+
+@media (max-width: 640px) {
+    .search-input-home {
+        font-size: 1rem;
+        padding: 0.875rem 1rem 0.875rem 3rem;
+    }
+
+    .search-icon-home {
+        left: 2rem;
+    }
+
+    .hero {
+        padding: 3rem 1rem;
+    }
+}
