@@ -78,6 +78,16 @@ export default function Home({ navigateToTramites }) {
                             <a href="#" className="card-action">Ver más →</a>
                         </div>
                     </div>
+                    <div className="card">
+                        <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=800&q=80" alt="Movilidad" className="card-img-home" />
+                        <div className="card-content">
+                            <h3>Movilidad y Vehículos</h3>
+                            <p>
+                                Gestiona trámites de control vehicular, licencias, tenencias y multas.
+                            </p>
+                            <button onClick={() => navigateToTramites('MOVILIDAD')} className="btn card-action">Ver más →</button>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>

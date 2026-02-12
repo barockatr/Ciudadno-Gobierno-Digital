@@ -136,6 +136,59 @@ export const TRAMITES = [
         requisitos: ["CURP", "Pago en línea"],
         color: "var(--color-gob, #b38e5d)",
         keywords: ["bebe", "papel para nacer", "hijo", "registro civil", "copia certificada", "nacionalidad"]
+    },
+    // MOVILIDAD Y VEHÍCULOS
+    {
+        id: "movilidad-licencia",
+        titulo: "Licencia de Conducir",
+        institucion: "Secretaría de Movilidad",
+        categoria: "MOVILIDAD",
+        icono: "Car",
+        urlDestino: "https://semovi.cdmx.gob.mx/tramites-y-servicios/licencias-y-permisos",
+        descripcion: "Expedición, renovación y reposición de licencias tipo A.",
+        tiempoEstimado: "20 min",
+        requisitos: ["Identificación oficial", "Comprobante de domicilio", "Línea de captura pagada"],
+        color: "var(--color-movilidad, #e1ad01)", // Yellow/Gold
+        keywords: ["manejo", "chofer", "permiso", "renovación", "plástico"]
+    },
+    {
+        id: "movilidad-tenencia",
+        titulo: "Pago de Tenencia",
+        institucion: "Secretaría de Finanzas",
+        categoria: "MOVILIDAD",
+        icono: "CreditCard",
+        urlDestino: "https://data.finanzas.cdmx.gob.mx/formato_lc/tenencia",
+        descripcion: "Consulta y paga tu tenencia o refrendo vehicular.",
+        tiempoEstimado: "5 min",
+        requisitos: ["Placa del vehículo", "Tarjeta de circulación (dato)"],
+        color: "var(--color-movilidad, #e1ad01)",
+        keywords: ["impuesto", "carro", "adeudo", "multa", "refrendo"]
+    },
+    {
+        id: "movilidad-multas",
+        titulo: "Consulta de Multas",
+        institucion: "Secretaría de Seguridad",
+        categoria: "MOVILIDAD",
+        icono: "AlertCircle",
+        urlDestino: "https://estrados.cdmx.gob.mx/",
+        descripcion: "Verifica si tienes infracciones de tránsito pendientes.",
+        tiempoEstimado: "3 min",
+        requisitos: ["Placa del vehículo"],
+        color: "var(--color-movilidad, #e1ad01)",
+        keywords: ["infracción", "policia", "tránsito", "foto cívica", "corralón"]
+    },
+    {
+        id: "movilidad-placas",
+        titulo: "Alta de Placas",
+        institucion: "Secretaría de Movilidad",
+        categoria: "MOVILIDAD",
+        icono: "CreditCard", // Using generic card icon or similar if specific plate icon misses
+        urlDestino: "https://semovi.cdmx.gob.mx/tramites-y-servicios/vehiculos-particulares/placas",
+        descripcion: "Trámite de alta para vehículos nuevos o usados.",
+        tiempoEstimado: "30 min",
+        requisitos: ["Factura", "Carta factura", "Identificación", "Comprobante domicilio"],
+        color: "var(--color-movilidad, #e1ad01)",
+        keywords: ["emplacamiento", "auto nuevo", "baja", "cambio propietario"]
     }
 ];
 
@@ -144,4 +197,5 @@ export const CATEGORIAS = [
     { id: 'SRE', label: 'SRE', color: '#13322b', desc: 'Pasaportes y Viajes' },
     { id: 'SAT', label: 'SAT', color: '#9d2449', desc: 'Impuestos y RFC' },
     { id: 'SEGOB', label: 'SEGOB', color: '#b38e5d', desc: 'Identidad y Registro' },
+    { id: 'MOVILIDAD', label: 'Movilidad', color: '#e1ad01', desc: 'Vehículos y Licencias' },
 ];
