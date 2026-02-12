@@ -13,6 +13,7 @@ const SLIDES = [
         icon: FileText,
         iconColor: "#e0f2fe", // Light sky blue
         description: "Consulta y gestiona tu CURP y Acta de Nacimiento al instante.",
+        tramiteId: "curp-consulta" // ID real de tramite
     },
     {
         id: 2,
@@ -22,6 +23,7 @@ const SLIDES = [
         icon: Heart,
         iconColor: "#dcfce7", // Light green
         description: "Citas médicas en el IMSS y consulta de vigencia de derechos.",
+        tramiteId: "imss-cita"
     },
     {
         id: 3,
@@ -31,10 +33,11 @@ const SLIDES = [
         icon: Coins,
         iconColor: "#f1f5f9", // Slate 100
         description: "Mantén tus obligaciones tributarias al día con el SAT.",
+        tramiteId: "sat-constancia"
     },
 ];
 
-const HeroSlider = () => {
+const HeroSlider = ({ onAction }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
@@ -132,6 +135,7 @@ const HeroSlider = () => {
                                     className="action-btn"
                                     whileHover={{ scale: 1.05, paddingRight: "1.5rem" }}
                                     whileTap={{ scale: 0.95 }}
+                                    onClick={() => onAction && onAction(SLIDES[currentIndex].tramiteId)}
                                 >
                                     {SLIDES[currentIndex].action}
                                     <ArrowRight size={18} className="btn-icon" />

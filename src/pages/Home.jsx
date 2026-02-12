@@ -1,5 +1,8 @@
 
+import { useState } from 'react';
 import HeroSlider from '../components/HeroSlider';
+import PreFlightModal from '../components/Tramites/PreFlightModal';
+import { TRAMITES } from '../data/tramites';
 import { Search } from 'lucide-react';
 import './Home.css';
 
@@ -12,6 +15,18 @@ const UNSPLASH_IDS = {
 const getImg = (id) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=800&q=80`;
 
 export default function Home({ navigateToTramites }) {
+    const [selectedTramite, setSelectedTramite] = useState(null);
+
+    const handleSliderAction = (tramiteId) => {
+        const tramite = TRAMITES.find(t => t.id === tramiteId);
+        if (tramite) {
+            setSelectedTramite(tramite);
+        } else {
+            // Fallback if tramite not found, go to directory
+            navigateToTramites();
+        }
+    };
+
     return (
         <div className="page-home">
             {/* 1. Static Hero Principal */}
@@ -38,7 +53,7 @@ export default function Home({ navigateToTramites }) {
                     Novedades y Destacados
                 </h2>
                 <div style={{ maxWidth: '100%', margin: '0 auto' }}>
-                    <HeroSlider />
+                    <HeroSlider onAction={handleSliderAction} />
                 </div>
             </section>
 
@@ -90,6 +105,12 @@ export default function Home({ navigateToTramites }) {
                     </div>
                 </div>
             </section>
+
+            <PreFlightModal
+                tramite={selectedTramite}
+                isOpen={!!selectedTramite}
+                onClose={() => setSelectedTramite(null)}
+            />
         </div>
     );
 }
