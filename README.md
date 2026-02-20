@@ -88,4 +88,40 @@ Aprovechamos al máximo los Hooks de React para una gestión de estado eficiente
 *   **`useEffect`**: Para manejar efectos secundarios como el scroll automático al recibir nuevos mensajes o la comunicación entre componentes (event listeners).
 
 ---
+
+## 🏗️ Arquitectura y Estructura del Proyecto
+
+El sistema está diseñado bajo un esquema modular y escalable, facilitando el mantenimiento y la futura integración de servicios gubernamentales adicionales:
+
+- `src/components/`: Componentes de UI atómicos y modulares (Botones, Tarjetas, Modales) desarrollados con **Tailwind CSS**.
+- `src/services/`: Capa de abstracción para servicios externos. Aquí reside la lógica de comunicación con la API de **Groq**, manteniendo el código de los componentes limpio de lógica de red.
+- `src/data/`: Centralización de la información de los trámites (`servicesData.js`), permitiendo actualizaciones rápidas del catálogo sin tocar la lógica del frontend.
+- `src/hooks/`: Custom hooks para encapsular lógica repetitiva, como el manejo de formularios o el filtrado de servicios.
+
+---
+
+## 🧠 Retos Técnicos y Decisiones
+
+- **Latencia en IA:** Se seleccionó la infraestructura de **Groq** sobre otros proveedores para garantizar que el asistente ciudadano responda en milisegundos, simulando una conversación humana natural y eficiente.
+- **Interfaz Glassmorphism:** Se implementó una estética moderna de "vidrio esmerilado" mediante utilidades de desenfoque de Tailwind, logrando un aspecto institucional pero vanguardista que mejora la legibilidad en dispositivos móviles.
+- **Flujo de Usuario (UX):** Se diseñó un sistema de "Pre-flight Check" en los modales, donde antes de redirigir al ciudadano a una página externa (como el SAT), se le presentan los requisitos necesarios para evitar rebotes y frustración del usuario.
+
+---
+
+## 🗺️ Roadmap (Próximas Mejoras)
+
+- [ ] **Autenticación Ciudadana:** Integración con sistemas de identidad digital para personalizar los trámites.
+- [ ] **Buscador por Voz:** Implementación de Web Speech API para mejorar la accesibilidad a personas con discapacidades visuales o motrices.
+- [ ] **Offline Mode:** Uso de Service Workers (PWA) para permitir la consulta de requisitos incluso sin conexión a internet estable.
+
+---
+
+## 👨💻 Autor
+
+**Antonio**
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](TU_LINKEDIN_REAL)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/barockatr)
+
+---
 *Desarrollado para mejorar la interacción ciudadano-gobierno.*
