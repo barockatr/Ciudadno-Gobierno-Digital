@@ -1,8 +1,29 @@
+/* ==========================================
+   TRAMITES PAGE WRAPPER 
+   (Fondo Dinámico Radial Reactivo)
+   ========================================== */
+.page-tramites {
+    min-height: 100vh;
+    /* Fondo que reacciona a la variable CSS inyectada por el componente + gradiente suave de base */
+    background: radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--bg-glow, #f8fafc) 15%, transparent), transparent 60%),
+        linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+    width: 100%;
+    transition: background 0.8s ease;
+    /* Transición súper suave (ease funde mejor que ease-out) */
+
+    /* 2. Centrado Geométrico (Viewport Perfect) */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .tramites-page-container {
-    padding: 1rem;
     max-width: 1200px;
     margin: 0 auto;
-    min-height: 80vh;
+    padding: 2rem;
+    position: relative;
+    width: 100%;
+    /* z-index ajustado si es necesario */
 }
 
 @media (min-width: 640px) {
@@ -17,10 +38,13 @@
 }
 
 .tramites-header h1 {
-    font-size: 2rem;
-    color: #0f172a;
-    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
     font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+    transition: color 0.5s ease;
+    /* Transición de color al cambiar de institución */
 }
 
 @media (min-width: 640px) {
@@ -30,8 +54,10 @@
 }
 
 .tramites-header p {
-    color: #64748b;
-    font-size: 1rem;
+    font-size: 1.15rem;
+    color: #475569;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 @media (min-width: 640px) {
@@ -44,79 +70,90 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
 }
 
 .btn-back {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    background: none;
-    border: none;
-    color: #64748b;
-    font-weight: 500;
-    cursor: pointer;
-    margin-bottom: 1rem;
+    background: white;
+    border: 1px solid #e2e8f0;
     padding: 0.5rem 1rem;
     border-radius: 99px;
-    transition: background 0.2s;
+    color: #475569;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
 }
 
 .btn-back:hover {
-    background: #f1f5f9;
+    background: #f8fafc;
     color: #0f172a;
+    transform: translateX(-4px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
-/* SEARCH */
+/* SEARCH: Barra de búsqueda flotante tipo pastilla */
 .tramites-search {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 30;
+    /* Elevar sobre las tarjetas */
 }
 
 .search-input-wrapper {
     position: relative;
     width: 100%;
-    max-width: 500px;
+    max-width: 540px;
+    /* Un poco más espaciosa */
 }
 
 .search-icon {
     position: absolute;
-    left: 1rem;
+    left: 1.25rem;
     top: 50%;
     transform: translateY(-50%);
-    color: #94a3b8;
+    color: #64748b;
+    z-index: 2;
 }
 
 .search-input {
     width: 100%;
-    padding: 1rem 1rem 1rem 3rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    font-size: 1rem;
+    padding: 1.15rem 1rem 1.15rem 3.5rem;
+    background: white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 999px;
+    /* Pill shape */
+    font-size: 1.05rem;
+    color: #0f172a;
     outline: none;
-    transition: all 0.2s;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.05);
+    /* Soft glow / flotante */
+}
+
+.search-input::placeholder {
+    color: #94a3b8;
 }
 
 .search-input:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    /* Anillo de luz Índigo */
+    outline: 2px solid transparent;
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15), 0 10px 40px rgba(79, 70, 229, 0.1);
+    border-color: rgba(79, 70, 229, 0.3);
+    background: #ffffff;
 }
 
-/* CATEGORIES DASHBOARD */
-.categories-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 2rem;
-    padding: 1rem 0;
-}
+/* CATEGORIES DASHBOARD COVERFLOW */
+/* Eliminado el grid estático. Se controla por el componente CoverFlow3D */
 
 .category-card {
     background: white;
     border: 1px solid #f1f5f9;
     border-radius: 20px;
-    padding: 2rem;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -127,37 +164,127 @@
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
-.category-card:hover {
+.category-card:hover,
+.category-card.active-tile {
     transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    border-color: var(--cat-color);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    border-color: var(--cat-color, #3b82f6);
 }
 
 .cat-icon-container {
-    width: 64px;
-    height: 64px;
+    padding: 1rem;
     border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin-bottom: 0.5rem;
-    transition: transform 0.3s ease;
-}
-
-.category-card:hover .cat-icon-container {
-    transform: scale(1.1);
 }
 
 .category-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+    color: #0f172a;
     font-weight: 700;
-    color: #1e293b;
-    margin: 0;
 }
 
 .category-card span {
     font-size: 0.9rem;
     color: #64748b;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   INFORMACIÓN CONTEXTUAL (Anclaje - Fusión Total)
+   ========================================== */
+.contextual-info-wrapper {
+    /* 1. El Anclaje Visual: Solapamiento y efecto Glass gradual */
+    position: relative;
+    margin-top: -5rem;
+    /* Se solapa debajo del carrusel 3D para que "nazca" desde ahí */
+    padding-top: 7rem;
+    /* Aire interno para que el contenido baje */
+    min-height: 200px;
+
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    /* Ocupa borde a borde */
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+
+    /* Gradiente lineal de transparente a blanco semi-transparente */
+    background: linear-gradient(to bottom, transparent 0%, rgba(248, 250, 252, 0.5) 40%, rgba(248, 250, 252, 0.95) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    /* Difumina sutilmente el blur para que no haya un "corte duro" arriba */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 35%, black 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 35%, black 100%);
+}
+
+.contextual-info-container {
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    padding: 1.5rem;
+    /* Simplificamos porque el relleno y vidrio pasaron al wrapper */
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.contextual-info-container h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.contextual-info-container h4::before,
+.contextual-info-container h4::after {
+    content: '';
+    height: 1px;
+    flex: 1;
+    background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.1), transparent);
+}
+
+.quick-links-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.quick-link-pill {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #475569;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    transition: all 0.2s ease;
+}
+
+.quick-link-pill:hover {
+    background: var(--context-color, #3b82f6);
+    color: white;
+    border-color: var(--context-color, #3b82f6);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--context-color, #3b82f6) 30%, transparent);
+}
+
+.quick-link-pill.active {
+    background: transparent;
+    color: var(--context-color, #3b82f6);
+    border: 1px solid var(--context-color, #3b82f6);
+}
+
+.quick-link-pill.active:hover {
+    background: var(--context-color, #3b82f6);
+    color: white;
 }
 
 /* TRAMITES GRID LIST */

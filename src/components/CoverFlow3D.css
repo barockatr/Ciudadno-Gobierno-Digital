@@ -1,0 +1,77 @@
+.coverflow-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 8vh 0;
+    /* Espacio vertical generoso para que respire el 3D */
+    margin-bottom: 1rem;
+    overflow: visible;
+    /* Asegura que la perspectiva 3D no sea cortada verticalmente */
+    z-index: 20;
+    /* Garantiza que las tarjetas estén encima de paneles de información */
+
+    /* Evitamos overflow horizontal en mobile/desktop pero damos aire al contenedor */
+    max-width: 100%;
+
+    /* Profundidad Atmosférica (Fog): Desvanecimiento lateral */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+/* 1. El Escenario (La Perspectiva) */
+.coverflow-container {
+    perspective: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    overflow: visible;
+    /* CRÍTICO: No cortar las tarjetas en las esquinas */
+}
+
+/* La tarjeta tridimensional base */
+.coverflow-slide {
+    position: absolute;
+    /* Para centrar elementos absolutos con anchos variables en flexbox, usamos left, right y margin auto */
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* El hover y clics solo funcionan bien si marcamos el cursor */
+    cursor: pointer;
+}
+
+/* Dots Navigation */
+.coverflow-dots {
+    position: absolute;
+    bottom: -2.5rem;
+    /* Ajustado para que queden debajo del motor 3D */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.75rem;
+    z-index: 20;
+}
+
+.coverflow-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(148, 163, 184, 0.4);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.coverflow-dot.active {
+    background: var(--color-accent, #3b82f6);
+    transform: scale(1.2);
+    width: 24px;
+    border-radius: 12px;
+}

@@ -17,10 +17,11 @@ const TramiteCard = ({ tramite, onClick }) => {
             className="tramite-card"
             onClick={onClick}
             style={{ '--inst-color': tramite.color || '#3b82f6' }}
-            whileHover={{ y: -8, transition: { duration: 0.22, ease: [0.4, 0, 0.2, 1] } }}
-            whileTap={{ scale: 0.97, transition: { duration: 0.1 } }}
+            variants={typeof onClick !== 'undefined' ? undefined : undefined} // will be handled by parent stagger if passed
+            whileHover={{ y: -5, transition: { duration: 0.2, ease: "easeOut" } }}
+            whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
         >
-            {/* Línea de color izquierda (pseudo-elemento via CSS) */}
+            {/* Línea de color izquierda manejada vía CSS var(--inst-color) */}
 
             {/* 1. Etiqueta Superior (Pill) */}
             <div className="card-top-bar">
