@@ -1,15 +1,17 @@
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import './Navbar.css';
 
-export default function Navbar({ activeTab, onTabChange }) {
-    const tabs = ['Inicio', 'Trámites', 'Noticias', 'Ayuda'];
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+const NAV_LINKS = [
+    { label: 'Inicio', path: '/home' },
+    { label: 'Trámites', path: '/tramites' },
+    { label: 'Noticias', path: '/noticias' },
+    { label: 'Ayuda', path: '/ayuda' },
+];
 
-    const handleTabClick = (tab) => {
-        onTabChange(tab);
-        setIsMenuOpen(false);
-    };
+export default function Navbar() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
         <nav className="navbar">
@@ -28,16 +30,17 @@ export default function Navbar({ activeTab, onTabChange }) {
                     {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
 
-                {/* Nav Links - Conditional class for mobile */}
+                {/* Nav Links */}
                 <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
-                    {tabs.map(tab => (
-                        <button
-                            key={tab}
-                            className={`nav-link ${activeTab === tab ? 'active' : ''}`}
-                            onClick={() => handleTabClick(tab)}
+                    {NAV_LINKS.map(({ label, path }) => (
+                        <NavLink
+                            key={path}
+                            to={path}
+                            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+                            onClick={() => setIsMenuOpen(false)}
                         >
-                            {tab}
-                        </button>
+                            {label}
+                        </NavLink>
                     ))}
                 </div>
             </div>

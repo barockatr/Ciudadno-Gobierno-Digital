@@ -1,8 +1,12 @@
+import { useState } from 'react';
 import { NEWS_DATA, getNewsImage } from '../data/newsData';
 import { Calendar, Tag, ArrowRight } from 'lucide-react';
+import NewsModal from '../components/NewsModal';
 import './Noticias.css';
 
 export default function Noticias() {
+    const [selectedNews, setSelectedNews] = useState(null);
+
     return (
         <div className="news-page-container">
             <div className="news-header">
@@ -21,19 +25,27 @@ export default function Noticias() {
                         <div className="news-content">
                             <div className="news-meta">
                                 <Calendar size={14} />
-                                <span>{item.date}</span>
+                                <span>{new Date(item.date).toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                             </div>
 
                             <h2>{item.title}</h2>
                             <p>{item.summary}</p>
 
-                            <button className="read-more-btn">
+                            <button
+                                className="read-more-btn"
+                                onClick={() => setSelectedNews(item)}
+                            >
                                 Leer comunicado <ArrowRight size={16} />
                             </button>
                         </div>
                     </article>
                 ))}
             </div>
+
+            <NewsModal
+                news={selectedNews}
+                onClose={() => setSelectedNews(null)}
+            />
         </div>
     );
 }

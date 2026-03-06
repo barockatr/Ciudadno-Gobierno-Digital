@@ -1,5 +1,6 @@
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { TRAMITES, CATEGORIAS } from '../data/tramites';
 import TramiteCard from '../components/Tramites/TramiteCard';
 import PreFlightModal from '../components/Tramites/PreFlightModal';
@@ -9,25 +10,48 @@ import { Search, ArrowLeft, Building2, SearchX, MessageSquare } from 'lucide-rea
 import './Tramites.css';
 
 export default function Tramites() {
+    const [searchParams, setSearchParams] = useSearchParams();
+
     // Logic State
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [selectedTramite, setSelectedTramite] = useState(null);
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm, setSearchTerm] = useState(() => searchParams.get('q') || '');
+
+    // Si cambia el param ?q en la URL, sincronizar el estado
+    useEffect(() => {
+        const qParam = searchParams.get('q') || '';
+        setSearchTerm(qParam);
+        if (qParam) {
+            setSelectedCategory(null); // búsqueda global, sin categoría
+        }
+    }, [searchParams]);
 
     // Handlers
     const handleCategoryClick = (catId) => {
         setSelectedCategory(catId);
-        setSearchTerm(''); // Clear search when drilling down
+        setSearchTerm('');
+        setSearchParams({});
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const handleBackToDashboard = () => {
         setSelectedCategory(null);
         setSearchTerm('');
+        setSearchParams({});
     };
 
     const handleTramiteClick = (tramite) => {
         setSelectedTramite(tramite);
+    };
+
+    const handleSearchChange = (e) => {
+        const value = e.target.value;
+        setSearchTerm(value);
+        if (value) {
+            setSearchParams({ q: value });
+        } else {
+            setSearchParams({});
+        }
     };
 
     // Filtering Logic
@@ -58,7 +82,6 @@ export default function Tramites() {
     }, [searchTerm, selectedCategory]);
 
     const handleAskAI = () => {
-        // Dispatch custom event to open Chatbot
         const event = new CustomEvent('open-chatbot', {
             detail: {
                 message: `Hola, no encontré lo que buscaba sobre "${searchTerm}". ¿Podrías ayudarme?`,
@@ -72,8 +95,6 @@ export default function Tramites() {
 
     return (
         <div className="tramites-page-container">
-            {/* ... (Header and Search remain mostly same, ensure imports are correct) */}
-
             <div className="tramites-header">
                 {!selectedCategory ? (
                     <>
@@ -100,7 +121,7 @@ export default function Tramites() {
                             type="text"
                             placeholder={selectedCategory ? `Buscar en ${selectedCategory}...` : "Buscar trámite global... (ej. 'bebé', 'viaje')"}
                             value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
+                            onChange={handleSearchChange}
                             className="search-input"
                         />
                     </div>

@@ -1,27 +1,35 @@
 
-import React from 'react';
+import { motion } from 'framer-motion';
 import { Clock } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
 import './TramiteCard.css';
 
 const TramiteCard = ({ tramite, onClick }) => {
-    // Dynamically get the icon component, default to FileText if not found
     const IconComponent = LucideIcons[tramite.icono] || LucideIcons.FileText;
 
-    // Use institution color for the pill
     const pillStyle = {
         backgroundColor: tramite.color || '#333',
         color: 'white'
     };
 
     return (
-        <div className="tramite-card" onClick={onClick}>
+        <motion.div
+            className="tramite-card"
+            onClick={onClick}
+            style={{ '--inst-color': tramite.color || '#3b82f6' }}
+            whileHover={{ y: -8, transition: { duration: 0.22, ease: [0.4, 0, 0.2, 1] } }}
+            whileTap={{ scale: 0.97, transition: { duration: 0.1 } }}
+        >
+            {/* Línea de color izquierda (pseudo-elemento via CSS) */}
+
             {/* 1. Etiqueta Superior (Pill) */}
             <div className="card-top-bar">
+                <div className="card-icon-pill">
+                    <IconComponent size={18} />
+                </div>
                 <span className="institution-pill" style={pillStyle}>
                     {tramite.institucion}
                 </span>
-                {/* Optional: Icon subtle in background or corner? For now, sticking strictly to requirements */}
             </div>
 
             {/* 2. Titulo */}
@@ -33,11 +41,12 @@ const TramiteCard = ({ tramite, onClick }) => {
             {/* 4. Footer de Tiempo */}
             <div className="tramite-footer">
                 <div className="time-est">
-                    <Clock size={16} className="clock-icon" />
+                    <Clock size={15} className="clock-icon" />
                     <span>{tramite.tiempoEstimado}</span>
                 </div>
+                <span className="tramite-cta">Ver requisitos →</span>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
