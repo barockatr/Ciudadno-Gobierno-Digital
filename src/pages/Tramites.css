@@ -151,42 +151,71 @@
 /* Eliminado el grid estático. Se controla por el componente CoverFlow3D */
 
 .category-card {
-    background: white;
-    border: 1px solid #f1f5f9;
-    border-radius: 20px;
+    /* Sin fondo sólido — glassmorphism sutil que se funde con el carrusel */
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 24px;
     text-align: center;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 2rem 1.5rem;
+
+    box-shadow:
+        0 4px 24px rgba(15, 23, 42, 0.06),
+        0 1px 2px rgba(255, 255, 255, 0.8) inset;
 }
 
 .category-card:hover,
 .category-card.active-tile {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-    border-color: var(--cat-color, #3b82f6);
+    background: rgba(255, 255, 255, 0.22);
+    border-color: color-mix(in srgb, var(--cat-color, #3b82f6) 35%, rgba(255, 255, 255, 0.8));
+    box-shadow:
+        0 20px 48px color-mix(in srgb, var(--cat-color, #3b82f6) 18%, transparent),
+        0 4px 12px rgba(15, 23, 42, 0.08),
+        0 1px 2px rgba(255, 255, 255, 0.9) inset;
 }
 
 .cat-icon-container {
-    padding: 1rem;
-    border-radius: 16px;
-    margin-bottom: 0.5rem;
+    width: 68px;
+    height: 68px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.25rem;
+
+    /* Glow difuso del color institucional */
+    box-shadow:
+        0 8px 24px color-mix(in srgb, var(--cat-color, #3b82f6) 40%, transparent),
+        0 2px 6px rgba(0, 0, 0, 0.12);
+
+    /* Gradiente interno para profundidad */
+    background: linear-gradient(145deg,
+            color-mix(in srgb, var(--cat-color, #3b82f6) 85%, white 15%),
+            var(--cat-color, #3b82f6)) !important;
 }
 
 .category-card h3 {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     color: #0f172a;
-    font-weight: 700;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
 }
 
 .category-card span {
-    font-size: 0.9rem;
+    font-size: 0.82rem;
     color: #64748b;
     line-height: 1.5;
+    font-weight: 500;
+    letter-spacing: 0.01em;
 }
 
 /* ==========================================

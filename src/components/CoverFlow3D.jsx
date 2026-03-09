@@ -8,7 +8,7 @@ const CoverFlow3D = ({
     autoPlayInterval = 5000,
     itemWidth = "800px",
     height = "400px",
-    translateOffset = 105, // Porcentaje o pixeles fijos, por defecto 105%
+    translateOffset = 95, // Porcentaje o pixeles fijos, por defecto 95%
     translateUnit = "%", // '%' o 'px'
     onActiveChange // Callback para notificar la tarjeta central
 }) => {
@@ -62,9 +62,9 @@ const CoverFlow3D = ({
                     const translateX = offset * translateOffset;
                     const scale = absOffset === 0 ? 1.15 : 0.85; // 3. Toque de Llenado: 1.15 scale
                     // Tarjetas laterales giran 35deg hacia el centro
-                    const rotateY = absOffset === 0 ? 0 : direction * -35;
+                    const rotateY = absOffset === 0 ? 0 : direction * -22;
                     const zIndex = 100 - absOffset;
-                    const blurValue = absOffset === 0 ? 0 : 4;
+                    const blurValue = absOffset === 0 ? 0 : 2;
 
                     // Solo mostramos el centro y 1 item adyacente por lado en el DOM visible para performance
                     const isVisible = absOffset <= 1;
@@ -85,7 +85,7 @@ const CoverFlow3D = ({
                                 rotateY: `${rotateY}deg`,
                                 zIndex,
                                 filter: `blur(${blurValue}px)`,
-                                opacity: isVisible ? (absOffset === 0 ? 1 : 0.6) : 0
+                                opacity: isVisible ? (absOffset === 0 ? 1 : 0.78) : 0
                             }}
                             transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
                             onClick={() => {

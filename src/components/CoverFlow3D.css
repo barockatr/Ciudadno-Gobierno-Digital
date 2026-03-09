@@ -13,8 +13,8 @@
     max-width: 100%;
 
     /* Profundidad Atmosférica (Fog): Desvanecimiento lateral */
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
 }
 
 /* 1. El Escenario (La Perspectiva) */
@@ -45,6 +45,8 @@
     align-items: center;
     /* El hover y clics solo funcionan bien si marcamos el cursor */
     cursor: pointer;
+    overflow: visible;
+    transform-style: preserve-3d;
 }
 
 /* Dots Navigation */
