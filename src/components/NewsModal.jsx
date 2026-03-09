@@ -2,8 +2,6 @@ import { useEffect } from 'react';
 import { X, Calendar, Tag, ExternalLink } from 'lucide-react';
 import './NewsModal.css';
 
-const getNewsImage = (id) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=900&q=80`;
-
 export default function NewsModal({ news, onClose }) {
     if (!news) return null;
 
@@ -25,7 +23,11 @@ export default function NewsModal({ news, onClose }) {
                 </button>
 
                 <div className="news-modal-image-wrapper">
-                    <img src={getNewsImage(news.image)} alt={news.title} />
+                    {news.image ? (
+                        <img src={news.image} alt={news.title} />
+                    ) : (
+                        <div className="news-modal-image-placeholder" />
+                    )}
                     <div className="news-modal-category-badge">
                         <Tag size={12} />
                         {news.category}
@@ -35,25 +37,41 @@ export default function NewsModal({ news, onClose }) {
                 <div className="news-modal-body">
                     <div className="news-modal-meta">
                         <Calendar size={14} />
-                        <span>{new Date(news.date).toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                        <span>{new Date(news.date).toLocaleDateString('es-MX', {
+                            year: 'numeric', month: 'long', day: 'numeric'
+                        })}</span>
                     </div>
 
                     <h2>{news.title}</h2>
                     <p className="news-modal-summary">{news.summary}</p>
 
-                    <div className="news-modal-divider" />
-
-                    <p className="news-modal-content">{news.content}</p>
+                    {news.body && news.body !== news.summary && (
+                        <>
+                            <div className="news-modal-divider" />
+                            <p className="news-modal-content">{news.body}</p>
+                        </>
+                    )}
 
                     <div className="news-modal-footer">
-                        <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>
-                            Comunicado oficial — Portal Ciudadano Digital
+                        <span className="news-modal-source">
+                            {news.source || 'Portal Ciudadano Digital'}
                         </span>
-                        <button className="btn btn-primary" onClick={onClose}
-                            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem' }}>
-                            <ExternalLink size={15} />
-                            Cerrar
-                        </button>
+                        <div className="news-modal-actions">
+                            {news.url && (
+                                <a
+                                    href={news.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="btn-modal-link"
+                                >
+                                    <ExternalLink size={14} />
+                                    Ver nota completa
+                                </a>
+                            )}
+                            <button className="btn-modal-close" onClick={onClose}>
+                                Cerrar
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
