@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Chatbot from './components/Chatbot';
 import PageWrapper from './components/PageWrapper';
@@ -11,6 +12,12 @@ import './App.css';
 
 function App() {
   const location = useLocation();
+
+  // Fix: limpia overflow del body en cada cambio de ruta.
+  // Previene el freeze cuando AnimatePresence desmonta modales con overflow:hidden activo.
+  useEffect(() => {
+    document.body.style.overflow = '';
+  }, [location.pathname]);
 
   return (
     <div className="app">

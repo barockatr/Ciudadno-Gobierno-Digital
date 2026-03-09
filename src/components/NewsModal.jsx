@@ -10,7 +10,7 @@ export default function NewsModal({ news, onClose }) {
         const handleKey = (e) => e.key === 'Escape' && onClose();
         window.addEventListener('keydown', handleKey);
         return () => {
-            document.body.style.overflow = 'unset';
+            document.body.style.overflow = '';
             window.removeEventListener('keydown', handleKey);
         };
     }, []);
