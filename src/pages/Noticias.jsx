@@ -29,8 +29,9 @@ export default function Noticias() {
         setStatus('loading');
         try {
             const res = await fetch(GNEWS_URL);
-            if (!res.ok) throw new Error('API error');
             const data = await res.json();
+            console.log('API response:', data); // 👈 temporal para debug
+            if (!res.ok || !data.articles) throw new Error(data.error || 'API error');
 
             // Mapear respuesta de GNews al formato que espera tu app
             const mapped = data.articles.map((article, i) => ({
