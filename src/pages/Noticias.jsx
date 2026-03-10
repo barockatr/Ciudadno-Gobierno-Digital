@@ -4,7 +4,7 @@ import NewsModal from '../components/NewsModal';
 import './Noticias.css';
 
 const GNEWS_API_KEY = import.meta.env.VITE_GNEWS_API_KEY;
-const GNEWS_URL = `https://gnews.io/api/v4/top-headlines?country=mx&lang=es&max=9&token=${GNEWS_API_KEY}`;
+const GNEWS_URL = `/api/news`;
 
 // Mapea categorías de GNews al estilo de tu app
 const mapCategory = (topic) => {
