@@ -2,6 +2,17 @@
     padding-bottom: 2rem;
 }
 
+.hero {
+    padding: 1rem 1.25rem 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero .container {
+    text-align: center;
+}
+
 .search-container {
     max-width: 600px;
     margin: 2rem auto 0;

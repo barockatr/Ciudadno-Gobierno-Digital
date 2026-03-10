@@ -15,7 +15,7 @@ export default function Navbar() {
 
     return (
         <nav className="navbar">
-            <div className="container nav-container">
+            <div className="container-nav nav-container">
                 <div className="logo">
                     <span className="logo-icon">🏛️</span>
                     Gobierno Digital

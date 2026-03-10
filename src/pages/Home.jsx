@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import HeroSlider from '../components/HeroSlider';
 import PreFlightModal from '../components/Tramites/PreFlightModal';
 import { TRAMITES } from '../data/tramites';
-import { Search } from 'lucide-react';
 import './Home.css';
 
 const UNSPLASH_IDS = {
@@ -30,7 +29,6 @@ const LOOPED_SERVICES = [...SERVICES, ...SERVICES, ...SERVICES];
 export default function Home() {
     const navigate = useNavigate();
     const [selectedTramite, setSelectedTramite] = useState(null);
-    const [searchQuery, setSearchQuery] = useState('');
 
     // 1. El Ancla — referencia al contenedor del carrusel
     const carouselRef = useRef(null);
@@ -71,16 +69,6 @@ export default function Home() {
         }
     };
 
-    const handleSearch = (e) => {
-        e.preventDefault();
-        const q = searchQuery.trim();
-        if (q) {
-            navigate(`/tramites?q=${encodeURIComponent(q)}`);
-        } else {
-            navigate('/tramites');
-        }
-    };
-
     return (
         <div className="page-home">
             {/* 1. Static Hero Principal */}
@@ -88,24 +76,11 @@ export default function Home() {
                 <div className="container">
                     <h1>Bienvenido a tu Portal Ciudadano</h1>
                     <p>Realiza tus trámites de gobierno de forma rápida y segura.</p>
-
-                    {/* Barra de Búsqueda Funcional */}
-                    <form className="search-container" onSubmit={handleSearch}>
-                        <Search size={20} className="search-icon-home" />
-                        <input
-                            type="text"
-                            placeholder="Buscar trámite o servicio..."
-                            className="search-input-home"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                        />
-                        <button type="submit" className="search-btn-home">Buscar</button>
-                    </form>
                 </div>
             </section>
 
             {/* 2. Sección Slider */}
-            <section className="container" style={{ marginBottom: '4rem' }}>
+            <section className="container" style={{ marginBottom: '1.5rem' }}>
                 <h2 className="section-title">
                     Novedades y Destacados
                 </h2>

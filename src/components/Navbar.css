@@ -22,6 +22,12 @@
     align-items: center;
     height: 4.25rem;
     position: relative;
+    padding: 0 2rem;
+    /* ← más aire lateral */
+    max-width: 1400px;
+    /* ← más ancho que el container general */
+    margin: 0 auto;
+    width: 100%;
 }
 
 /* --- Logo --- */

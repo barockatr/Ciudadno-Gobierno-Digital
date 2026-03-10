@@ -5,29 +5,34 @@
 [![Ver Demo en Vivo](https://img.shields.io/badge/Ver_Demo_En_Vivo-FF0000?style=for-the-badge&logo=vercel&logoColor=white)](https://ciudadno-gobierno-digital.vercel.app/)
 [![Reportar Bug](https://img.shields.io/badge/Reportar_Bug-000000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/barockatr/Ciudadno-Gobierno-Digital/issues)
 
-![Dashboard Preview](https://via.placeholder.com/800x450.png?text=Vista+Previa+del+Dashboard+Ciudadano)
+![Dashboard Preview](Docs/Images/hero-home.png)
 
 ## 📌 El Problema
 Los ciudadanos enfrentan dificultades al navegar por múltiples sitios web gubernamentales dispersos y obsoletos para realizar trámites esenciales.
-**Solución:** Esta plataforma centraliza servicios como CURP, Actas de Nacimiento y Citas SAT en una interfaz de usuario unificada, intuitiva y accesible, mejorando drásticamente la experiencia del ciudadano.
+**Solución:** Esta plataforma centraliza servicios como CURP, Actas de Nacimiento y Citas SAT en una interfaz de usuario unificada, intuitiva y accesible (SPA), mejorando drásticamente la experiencia del ciudadano mediante micro-interacciones y UI Premium.
 
-## ✨ Características Clave
+## ✨ Características Clave (Capacidades Actuales)
 
-* **🤖 Asistente Ciudadano con IA:** Integración con **Groq API** (Llama 3/Mixtral) para respuestas instantáneas (<1s latencia) sobre dudas de trámites.
-* **📱 Diseño Responsivo:** Interfaz adaptada a móviles usando **TailwindCSS**, pensando en ciudadanos que acceden desde celulares básicos.
-* **🔍 Búsqueda Centralizada:** Motor de búsqueda para filtrar entre decenas de servicios gubernamentales (SAT, CURP, IMSS).
-* **⚡ Rendimiento Optimizado:** Carga inmediata gracias a **Vite** y gestión de estado eficiente.
+* **🤖 Asistente Ciudadano con IA:** Integración con **Groq SDK** (Llama 3/Mixtral) para respuestas instantáneas (<1s latencia) sobre dudas de trámites en lenguaje natural.
+* **🌐 Directorio Dinámico (CoverFlow 3D):** Filtra y clasifica servicios gubernamentales usando una experiencia visual inmersiva usando matemáticas 3D y Framer Motion.
+* **📰 Portal de Noticias en Tiempo Real:** Consumo de la API de **GNews** para alimentar comunicados oficiales con un layout editorial adaptable y modales de lectura estéticos.
+* **�️ Onboarding Interactivo (Pre-Flight Modal):** Antes de redirigir al ciudadano a sitios externos institucionales complejos, se le presenta un "Checklist" interactivo de requisitos para evitar frustraciones.
+* **💎 Diseño Glassmorphism Premium:** Uso extensivo de filtros de desenfoque (`backdrop-filter`), máscaras translúcidas y CSS Grid moderno para una experiencia limpia y nativa.
 
-## 🛠️ Stack Tecnológico
+![Funcionalidad 3D/Modal](Docs/Images/tramites.png)
 
-El proyecto está construido con tecnologías modernas para garantizar rendimiento y escalabilidad:
+## 🛠️ Stack Tecnológico y Arquitectura
 
-- ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) **Frontend Library**
-- ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white) **Build Tool & Dev Server**
-- ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white) **Utility-First CSS Framework**
-- ![Groq](https://img.shields.io/badge/Groq-AI-orange?style=for-the-badge) **AI Integration for Chatbot**
-- ![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white) **Animations**
-- ![Lucide React](https://img.shields.io/badge/Lucide_React-F05032?style=for-the-badge) **Icons**
+El proyecto es una **Single Page Application (SPA)** puramente Frontend, sin bases de datos ni backend propio, construida para ser ultraligera:
+
+- ![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) **Core Framework**
+- ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white) **Build Tool & Dev Server** (Módulos ES Nativos)
+- ![React Router](https://img.shields.io/badge/React_Router_7-CA4245?style=for-the-badge&logo=react-router&logoColor=white) **Enrutamiento Declarativo**
+- ![CSS3](https://img.shields.io/badge/CSS3_Vanilla-1572B6?style=for-the-badge&logo=css3&logoColor=white) **Estilado:** Vainilla CSS robusto con Variables CSS, Flexbox y Grid (Sin Tailwind, control atómico perfecto).
+- ![Groq](https://img.shields.io/badge/Groq_SDK-orange?style=for-the-badge) **Integración LLM para Chatbot**
+- ![GNews](https://img.shields.io/badge/GNews_API-00A651?style=for-the-badge) **Fuente de Noticias en Tiempo Real**
+- ![Framer Motion](https://img.shields.io/badge/Framer_Motion_12-0055FF?style=for-the-badge&logo=framer&logoColor=white) **Animaciones y Transiciones de Layout**
+- ![Lucide React](https://img.shields.io/badge/Lucide_React-F05032?style=for-the-badge) **Iconografía Consistente**
 
 ## 🚀 Instalación Rápida
 
@@ -45,9 +50,10 @@ Sigue estos pasos para ejecutar el proyecto localmente:
     ```
 
 3.  **Configurar variables de entorno:**
-    Crea un archivo `.env` en la raíz del proyecto basándote en `.env.example`:
+    Crea un archivo `.env` en la raíz del proyecto basándote en `.env.example` (Importante para que las APIs funcionen):
     ```env
-    VITE_GROQ_API_KEY=tu_api_key_aqui
+    VITE_GROQ_API_KEY=tu_api_key_de_groq_aqui
+    VITE_GNEWS_API_KEY=tu_api_key_de_gnews_aqui
     ```
 
 4.  **Correr el servidor de desarrollo:**
@@ -59,64 +65,64 @@ Sigue estos pasos para ejecutar el proyecto localmente:
 
 ## 📸 Capturas de Pantalla
 
-### Dashboard Principal
-Una vista clara de todos los servicios disponibles.
-![Dashboard](https://via.placeholder.com/600x400.png?text=Dashboard+Principal)
+### Dashboard Principal y Directorio 3D
+Una vista clara y dinámica de todos los servicios disponibles.
+![Dashboard](Docs/Images/servicios-destacados.png)
 
 ### Asistente Virtual (Chatbot via Groq)
 Un asistente impulsado por IA para resolver dudas en tiempo real.
-![Chatbot](https://via.placeholder.com/300x500.png?text=Asistente+Virtual)
+![Chatbot](Docs/Images/chat-bot-ia.png)
 
-## 💻 Implementación Técnica
+### Portal de Noticias
+Consumo de comunicados oficiales en tiempo real desde fuentes gubernamentales.
+![Noticias](Docs/Images/noticias.png)
 
-Este proyecto demuestra buenas prácticas en desarrollo frontend moderno:
+## 💻 Implementación Técnica y Buenas Prácticas
 
-### ⚡ Manejo de Asincronía (Async/Await)
-Utilizamos `async/await` para gestionar operaciones que toman tiempo, como las consultas a la API de Inteligencia Artificial (Groq). Esto evita bloquear la interfaz de usuario mientras esperamos la respuesta del servidor, garantizando una experiencia fluida.
-*   **Ejemplo:** `sendMessageToGroq` en `src/services/groqService.js`.
+### ⚡ Manejo de Asincronía y APIs Externas
+Uso intensivo de `fetch` nativo para GNews y el SDK oficial para Groq, gestionando estados complejos de UI (`loading`, `error`, `success`) mediante `async/await` para no bloquear el hilo principal.
 
 ### 🛡️ Gestión de Errores (Try/Catch)
-Implementamos bloques `try/catch` robustos en nuestras llamadas a servicios externos. Si la API falla o hay problemas de red, capturamos el error y mostramos un mensaje amigable al usuario en lugar de dejar que la aplicación colapse.
-*   **Ejemplo:** Manejo de errores de conexión en el servicio del chatbot.
+Implementación de UI de contingencia (fallbacks). Si la API de noticias falla, se muestra un componente de error interactivo con opción de "Reintentar", evitando pantallas blancas.
 
-### 🔑 Seguridad de API Keys
-Las credenciales sensibles nunca se exponen en el código fuente (`hardcoded`). Utilizamos variables de entorno (`.env`) accesibles solo a través de `import.meta.env.VITE_GROQ_API_KEY`. Esto protege la clave API y sigue las mejores prácticas de seguridad para aplicaciones Vite.
+### 🔑 Seguridad de API Keys (Punto Crítico)
+Actualmente el proyecto expone lógica de conexión a Groq y GNews del lado del cliente mediante `import.meta.env`. **Para despliegue a producción real, esto requiere una migración a un Backend for Frontend (BFF)**.
 
 ### 🧩 Manejo de Estado (Hooks)
-Aprovechamos al máximo los Hooks de React para una gestión de estado eficiente y reactiva:
-*   **`useState`**: Para controlar estados locales como la visibilidad del chatbot (`isOpen`), el historial de mensajes (`messages`), y los filtros de búsqueda de trámites.
-*   **`useEffect`**: Para manejar efectos secundarios como el scroll automático al recibir nuevos mensajes o la comunicación entre componentes (event listeners).
+El estado de la aplicación es puramente local usando los Hooks nativos de React (`useState`, `useEffect`), descartando Redux o Zustand para mantener el bundle final ultraligero y el rendimiento inmediato.
 
 ---
 
 ## 🏗️ Arquitectura y Estructura del Proyecto
 
-El sistema está diseñado bajo un esquema modular y escalable, facilitando el mantenimiento y la futura integración de servicios gubernamentales adicionales:
+El sistema está diseñado bajo un esquema modular y escalable usando Vite:
 
-- `src/components/`: Componentes de UI atómicos y modulares (Botones, Tarjetas, Modales) desarrollados con **Tailwind CSS**.
-- `src/services/`: Capa de abstracción para servicios externos. Aquí reside la lógica de comunicación con la API de **Groq**, manteniendo el código de los componentes limpio de lógica de red.
-- `src/data/`: Centralización de la información de los trámites (`servicesData.js`), permitiendo actualizaciones rápidas del catálogo sin tocar la lógica del frontend.
-- `src/hooks/`: Custom hooks para encapsular lógica repetitiva, como el manejo de formularios o el filtrado de servicios.
-
----
-
-## 🧠 Retos Técnicos y Decisiones
-
-- **Latencia en IA:** Se seleccionó la infraestructura de **Groq** sobre otros proveedores para garantizar que el asistente ciudadano responda en milisegundos, simulando una conversación humana natural y eficiente.
-- **Interfaz Glassmorphism:** Se implementó una estética moderna de "vidrio esmerilado" mediante utilidades de desenfoque de Tailwind, logrando un aspecto institucional pero vanguardista que mejora la legibilidad en dispositivos móviles.
-- **Flujo de Usuario (UX):** Se diseñó un sistema de "Pre-flight Check" en los modales, donde antes de redirigir al ciudadano a una página externa (como el SAT), se le presentan los requisitos necesarios para evitar rebotes y frustración del usuario.
+- `src/components/`: Componentes atómicos (Navbar, Modales de Noticias, Chatbot, CoverFlow3D) fuertemente acoplados a sus respectivos archivos `.css`.
+- `src/pages/`: Vistas completas enrutadas (`Home`, `Tramites`, `Noticias`).
+- `src/services/`: Capa de abstracción (`groqService.js`). Centraliza el prompt maestro de la IA.
+- `src/data/`: Fuentes de verdad *Mockeadas* / Estáticas (`tramites.js`, `servicesData.js`) listas para ser reemplazadas por llamadas a una Base de Datos real.
 
 ---
 
-## 🗺️ Roadmap (Próximas Mejoras)
+## 🗺️ Roadmap (Próximas Mejoras y Escalabilidad)
 
-- [ ] **Autenticación Ciudadana:** Integración con sistemas de identidad digital para personalizar los trámites.
-- [ ] **Buscador por Voz:** Implementación de Web Speech API para mejorar la accesibilidad a personas con discapacidades visuales o motrices.
-- [ ] **Offline Mode:** Uso de Service Workers (PWA) para permitir la consulta de requisitos incluso sin conexión a internet estable.
+Si bien la plataforma actual funge como una maqueta interactiva funcional de alta fidelidad, para escalar a un servicio masivo se contempla el siguiente roadmap:
+
+#### 🔙 Arquitectura y Backend
+- [ ] **Desarrollo de BFF (Backend for Frontend):** Migrar las llamadas de Groq y GNews a Node.js/Express para ocultar las API Keys y mejorar la seguridad.
+- [ ] **Sistema de Caché (Redis):** Cachear las respuestas de noticias y algunos prompts de IA repetitivos para escalar a miles de usuarios sin saturar la cuota de las APIs.
+- [ ] **Bases de Datos Real:** Migrar `tramites.js` a PostgreSQL/Supabase para editar servicios desde un panel administrativo.
+
+#### � Producto y Funcionalidades Ciudadanas
+- [ ] **Autenticación Ciudadana:** Integrar con sistemas de identidad digital (OAuth / Auth0) para crear el dashboard "Mis Trámites Realizados".
+- [ ] **Buscador Semántico (RAG/Embeddings):** Mejorar la búsqueda para que entienda intenciones. Si el usuario escribe "quiero manejar", sugerir "Licencia de Conducir B1".
+- [ ] **Agendado de Citas Nativas:** Expandir el `PreFlightModal` para conectarse a las agendas institucionales reales y apartar fechas desde la misma app.
+- [ ] **Soporte Offline (PWA):** Configurar Service Workers con `vite-plugin-pwa` para que los ciudadanos puedan consultar requisitos sin conexión a internet.
+- [ ] **Accesibilidad (a11y) y Multi-idioma:** Integrar Web Speech API (texto a voz) soporte `i18next` para dialectos indígenas nativos y extranjeros.
 
 ---
 
-## 👨💻 Autor
+## 👨‍💻 Autor
 
 **Antonio**
 
@@ -124,4 +130,4 @@ El sistema está diseñado bajo un esquema modular y escalable, facilitando el m
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/barockatr)
 
 ---
-*Desarrollado para mejorar la interacción ciudadano-gobierno.*
+*Desarrollado para descentralizar y revolucionar la interacción ciudadano-gobierno en México.*
