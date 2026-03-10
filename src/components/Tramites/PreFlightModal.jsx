@@ -4,15 +4,16 @@ import { X, CheckCircle, ExternalLink, AlertTriangle } from 'lucide-react';
 import './PreFlightModal.css';
 
 const PreFlightModal = ({ tramite, isOpen, onClose }) => {
-    if (!isOpen || !tramite) return null;
-
     useEffect(() => {
         // Prevent scrolling when modal is open
+        if (!isOpen) return;
         document.body.style.overflow = 'hidden';
         return () => {
             document.body.style.overflow = '';
         };
     }, [isOpen]);
+
+    if (!isOpen || !tramite) return null;
 
     const handleConfirm = () => {
         window.open(tramite.urlDestino, '_blank', 'noopener,noreferrer');
